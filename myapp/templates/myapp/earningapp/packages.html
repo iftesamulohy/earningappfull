@@ -1,0 +1,231 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- blank.html  21 Nov 2019 03:54:41 GMT -->
+<head>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>BRSP Work</title>
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="{% static 'myapp/assets/css/app.min.css' %}">
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="{% static 'myapp/assets/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'myapp/assets/css/components.css' %}">
+  <!-- Custom style CSS -->
+  <link rel="stylesheet" href="{% static 'myapp/assets/css/custom.css' %}">
+  <link rel='shortcut icon' type='image/x-icon' href='assets/img/favicon.ico' />
+  <style>
+    .bottom-menu {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: 0px -1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bottom-menu ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 8px 0;
+}
+
+.bottom-menu li {
+  font-size: 14px;
+}
+
+.bottom-menu a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #888;
+  padding: 6px;
+}
+.img-fluid {
+    max-width: 100%;
+    height: 200px;
+}
+
+.bottom-menu a:hover {
+  color: #222;
+}
+.main-content {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 50px;
+    width: 100%;
+    position: relative;
+}
+.mycolor{
+  color: #6c757d;
+}
+
+  </style>
+</head>
+
+<body>
+  <div class="loader"></div>
+  <div id="app">
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <!-- Main Content -->
+      <div class="main-content">
+        <section class="section">
+          <div class="section-body">
+            <h1 class="text-center">BRSP Work BD</h1>
+            <h6 class="text-center pb-3">username</h6>
+            
+            <!-- add content here -->
+            <div class="row">
+              {% for pack in packs %}
+              <div class="col-12 col-md-4 col-lg-4">
+                <div class="pricing">
+                  <div class="pricing-title">
+                    {{pack.name}}
+                  </div>
+                  <div class="pricing-padding">
+                    <div class="pricing-price">
+                      <div>৳{{pack.amount}}</div>
+                      
+                    </div>
+                    <div class="pricing-details">
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                        <div class="pricing-item-label">Daily Task: {{pack.daily_task}}</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                        <div class="pricing-item-label">Daily Income: {{pack.daily_income}}</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                        <div class="pricing-item-label">Refer Bonus: {{pack.refer_bonus}}</div>
+                      </div>
+                      <div class="pricing-item">
+                        <div class="pricing-item-icon"><i class="fas fa-check"></i></div>
+                        <div class="pricing-item-label">Validity: {{pack.plan_validity}}</div>
+                      </div>
+                     
+                    </div>
+                  </div>
+                  <div class="pricing-cta">
+                    <p>{{purpack}}{{packs.ex}}</p>
+                    {% if pack.status == "active"%}
+                    <a href="#" class="bg-success disabled text-white" >Activate</a>
+                    {% else %}
+                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter{{pack.pk}}">Buy Now {{purpack}}
+                      <i class="fas fa-arrow-right"></i>
+                    </a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </section>
+        <div class="settingSidebar">
+          <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
+          </a>
+          <div class="settingSidebar-body ps-container ps-theme-default">
+            <div class=" fade show active">
+              <div class="setting-panel-header">Theme Settings
+              </div>
+              <div class="p-15 border-bottom">
+                <h6 class="font-medium m-b-10">Select Layout</h6>
+                <div class="selectgroup layout-color w-50">
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="1" class="selectgroup-input-radio select-layout" checked>
+                    <span class="selectgroup-button">Light</span>
+                  </label>
+                  <label class="selectgroup-item">
+                    <input type="radio" name="value" value="2" class="selectgroup-input-radio select-layout">
+                    <span class="selectgroup-button">Dark</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <nav class="bottom-menu">
+          <ul>
+            <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
+            <li><a href="worklist.html"><i class="fas fa-tasks"></i>Work</a></li>
+            <li><a href="worklist.html"><i class="fas fa-check-circle"></i>Free Income</a></li>
+            <li><a href="profile.html"><i class="far fa-user"></i>Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+      <footer class="main-footer">
+        <div class="footer-left">
+          <a href="#">BRSP Work</a></a>
+        </div>
+        <div class="footer-right">
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!--Modal-->
+  <!-- Vertically Center -->
+  {% for pack in packs %}
+  <div class="modal fade" id="exampleModalCenter{{pack.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Confirm</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Confirm your purchase
+          
+        </div>
+        <div class="modal-footer bg-whitesmoke br">
+          <form action="" method="post">
+            {% csrf_token %}
+            <input type="hidden" value="{{pack.pk}}" name="package">
+            <input type="hidden" value="{{pack.plan_validity}}" name="validity">
+            <input type="submit" value="Confirm" class="btn btn-primary">
+          </form>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+  </div>
+  
+</div>
+{% endfor %}
+  <!-- General JS Scripts -->
+  <script src="{% static 'myapp/assets/js/app.min.js' %}"></script>
+  <!-- JS Libraies -->
+  <!-- Page Specific JS File -->
+  <script src="{% static 'myappassets/bundles/prism/prism.js' %}"></script>
+  <!-- Template JS File -->
+  <script src="{% static 'myapp/assets/js/scripts.js' %}"></script>
+  <!-- Custom JS File -->
+  <script src="{% static 'myapp/assets/js/custom.js' %}"></script>
+  <script>
+    const menuItems = document.querySelectorAll('.bottom-menu a');
+
+menuItems.forEach(item => {
+  item.addEventListener('click', () => {
+    menuItems.forEach(item => {
+      item.classList.remove('active');
+    });
+    item.classList.add('active');
+  });
+});
+
+  </script>
+</body>
+
+
+<!-- blank.html  21 Nov 2019 03:54:41 GMT -->
+</html>
